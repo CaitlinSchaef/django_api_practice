@@ -8,6 +8,9 @@ from django.db import models
 class Stock(models.Model):
     stock = models.SmallIntegerField(default=10, null=True)
 
+    def __str__(self):
+        return f'Number In Stock: {self.stock} of {CustomerOrder.vehicles}'
+
 class Vehicle(models.Model):
     type = models.TextField(max_length=50, default='bicycle', null=True)
     stock = models.ForeignKey(Stock, on_delete=models.SET_NULL, null=True)
@@ -15,7 +18,7 @@ class Vehicle(models.Model):
     color = models.TextField(max_length=50, default='black', null=True)
 
     def __str__(self):
-        return f'Type: {self.type}, Price: ${self.number_in_stock}, Color: {self.color}'
+        return f'Type: {self.type}, Price: ${self.stock}, Color: {self.color}'
 
 
 class Customer(models.Model):
@@ -28,7 +31,7 @@ class CustomerOrder(models.Model):
     date_month = models.PositiveIntegerField(default=4)
     date_day = models.PositiveIntegerField(default=12)
     date_year = models.PositiveIntegerField(default=2024)
-    customer_name = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    customer_name = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, related_name='names')
     vehicles = models.ManyToManyField(Vehicle, related_name='order') #type, price, color
     order_quantity = models.PositiveIntegerField(default=1)
     paid = models.TextField(null=True, default='not paid')
