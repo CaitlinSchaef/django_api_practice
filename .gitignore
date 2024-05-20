@@ -1,6 +1,9 @@
 #virtual environment
 myenv/
 
+#secret key
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
