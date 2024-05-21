@@ -9,7 +9,7 @@ class Stock(models.Model):
     stock = models.SmallIntegerField(default=10, null=True)
 
     def __str__(self):
-        return f'Number In Stock: {self.stock} of {CustomerOrder.vehicles}'
+        return f'Number In Stock: {self.stock}'
 
 class Vehicle(models.Model):
     type = models.TextField(max_length=50, default='bicycle', null=True)
@@ -37,9 +37,10 @@ class CustomerOrder(models.Model):
 
     def __str__(self):
         vech_string = ""
-        for v in self.vehicles.all():
+        for v in self.vehicle.all():
+            # vquery = VehicleInOrder.objects.get(id=v)
             vech_string += f"{v}"
-        return f'ORDER:{self.id} {self.customer_name}, Vehicles In Order: {self.order_quantity}, Order Date:{self.date_month}-{self.date_day}-{self.date_year}, Paid: {self.paid}: \n \t {vech_string} '
+        return f'ORDER:{self.id} {self.customer_name}, Vehicles In Order: , Order Date:{self.date_month}-{self.date_day}-{self.date_year}, Paid: {self.paid}: \n \t {vech_string} '
     
 class VehicleInOrder(models.Model):
     customer_order = models.ForeignKey(CustomerOrder, on_delete=models.CASCADE, related_name="vehicle")

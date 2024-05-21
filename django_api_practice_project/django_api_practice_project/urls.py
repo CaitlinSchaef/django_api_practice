@@ -25,10 +25,11 @@ from django_api_practice_app.views import *
 #now define router:
 router = routers.DefaultRouter()
 
-router.register('stocks', StockViewSet)
-router.register('vehicles', VehicleViewSet)
-router.register('customers', CustomerViewSet)
-router.register('customerOrders', CustomerOrderViewSet)
+router.register(r'stocks', StockViewSet)
+router.register(r'vehicles', VehicleViewSet)
+router.register(r'customers', CustomerViewSet)
+router.register(r'customer-orders', CustomerOrderViewSet)
+router.register(r'vehicles-in-orders', VehicleInOrderViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

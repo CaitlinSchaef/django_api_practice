@@ -19,5 +19,10 @@ class CustomerSerializer(serializers.ModelSerializer):
 class CustomerOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomerOrder
-        fields = ['id', 'date_month', 'date_day', 'date_year', 'customer_name', 'vehicles', 'order_quantity', 'paid']
+        fields = ['id', 'date_month', 'date_day', 'date_year', 'customer_name', 'paid', 'vehicle']
+
+class VehicleInOrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VehicleInOrder
+        fields = ['id', 'customer_order', 'vehicle_type', 'quantity_of_specific_ordered_vehicle']
 
