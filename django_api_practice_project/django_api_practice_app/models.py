@@ -48,3 +48,4 @@ class VehicleInOrder(models.Model):
 
     def __str__(self):
         return f'Ordered {self.quantity_of_specific_ordered_vehicle} {self.vehicle_type}s'
+    
